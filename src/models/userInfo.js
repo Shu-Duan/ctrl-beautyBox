@@ -25,7 +25,7 @@ const _export = (sequelize,DataTypes)=>{
 		timestamps: false,
     classMethods: {
       associate: function(models) {
-        userInfo.hasOne(models.userLogin);
+        userInfo.hasOne(models.userLogin, {as: 'userLogin', foreignKey : 'uuid'});
       }
     }
     }

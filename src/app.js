@@ -37,7 +37,7 @@ app.use(session({
     }
 }));
 
-app.use('/login', loginRoutes);
+app.use('/app', loginRoutes);
 /*app.use(handleRender);*/
 app.listen(80, (error) => {
   if (error) {
