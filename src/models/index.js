@@ -35,7 +35,7 @@ const sequelize = new Sequelize(config.db.database, config.db.username, config.d
 
 /** Test connection */
 sequelize.authenticate().then(function() {
-  console.log('ok');
+  console.log('sequelize started.');
 }).catch(function(err) {
   console.log(err);
 });
@@ -46,8 +46,6 @@ fs.readdirSync(__dirname).filter(function(file) {
     return (file.indexOf(".") !== 0) && (file !== "index.js");
   }).forEach(function(file) {
     var model = sequelize.import(path.join(__dirname, file));
-    console.log('Imported ' + model.name);
-	console.log(model.findAll);
     db[model.name] = model;
   });
 

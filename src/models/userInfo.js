@@ -22,14 +22,15 @@ const _export = (sequelize,DataTypes)=>{
     }
   }, {
         tableName: 'user_info',
-		timestamps: false,
-    classMethods: {
-      associate: function(models) {
-        userInfo.hasOne(models.userLogin, {as: 'userLogin', foreignKey : 'uuid'});
-      }
-    }
+		timestamps: false
     }
     );
+  userInfo.associate = function(model) {
+    userInfo.hasOne(model.userLogin, {
+      foreignKey: 'user_uuid',
+      sourceKey: 'uuid'
+    });
+  };
   return userInfo;
 }
 

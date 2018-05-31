@@ -13,14 +13,15 @@ const _export = (sequelize,DataTypes)=>{
     }
   }, {
         tableName: 'user_login',
-		timestamps: false,
-    classMethods: {
-      associate: function(models) {
-        userLogin.BelongsTo(models.userInfo);
-      }
-    }
+		timestamps: false
     }
     );
+  userLogin.associate = function(model) {
+    userLogin.belongsTo(model.userInfo, {
+      as: 'userInfo',
+      foreignKey: 'user_uuid'
+    });
+  };
   return userLogin;
 }
 
