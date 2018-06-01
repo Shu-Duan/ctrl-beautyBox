@@ -6,7 +6,7 @@ import path from 'path';
 const sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
   operatorsAliases: false,
   host: config.db.host,
-   port: config.db.port,
+  port: config.db.port,
   dialect: config.db.dialect,
   logging: function(msg) {
     console.log(msg);
@@ -18,12 +18,12 @@ const sequelize = new Sequelize(config.db.database, config.db.username, config.d
   },
   retry: {
     match: [
-      /SequelizeConnectionError/,
-      /SequelizeConnectionRefusedError/,
-      /SequelizeHostNotFoundError/,
-      /SequelizeHostNotReachableError/,
-      /SequelizeInvalidConnectionError/,
-      /SequelizeConnectionTimedOutError/
+    /SequelizeConnectionError/,
+    /SequelizeConnectionRefusedError/,
+    /SequelizeHostNotFoundError/,
+    /SequelizeHostNotReachableError/,
+    /SequelizeInvalidConnectionError/,
+    /SequelizeConnectionTimedOutError/
     ],
     name: 'query',
     backoffBase: 100,
@@ -43,11 +43,11 @@ sequelize.authenticate().then(function() {
 var db = {};
 
 fs.readdirSync(__dirname).filter(function(file) {
-    return (file.indexOf(".") !== 0) && (file !== "index.js");
-  }).forEach(function(file) {
-    var model = sequelize.import(path.join(__dirname, file));
-    db[model.name] = model;
-  });
+  return (file.indexOf(".") !== 0) && (file !== "index.js");
+}).forEach(function(file) {
+  var model = sequelize.import(path.join(__dirname, file));
+  db[model.name] = model;
+});
 
 Object.keys(db).forEach(function(modelName) {
   if ("associate" in db[modelName]) {
