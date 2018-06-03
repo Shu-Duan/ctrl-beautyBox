@@ -3,8 +3,8 @@ import ajaxRes from '../object/ajaxResponse.js';
 
 const loginService = {};
 
-loginService.queryUserById = async function queryUserById(account) {
-	const data = await db.userInfo.findOne({
+loginService.queryUserById = function queryUserById(account) {
+	return db.userInfo.findOne({
 		where : {
 			account: account
 		},
@@ -15,15 +15,7 @@ loginService.queryUserById = async function queryUserById(account) {
 			}
 		]
 	});
-	let ajaxres = new ajaxRes();
-	if (data.length === 0) {
-		ajaxres.statusFail('查無資料。');
-		return ajaxres;
-	}else {
-		ajaxres.statusOK();
-		ajaxres.data=data;
-		return ajaxres;
-	}
+	
 }
 
 export default loginService;

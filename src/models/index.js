@@ -4,20 +4,20 @@ import fs from 'fs';
 import path from 'path';
 
 const sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
-  operatorsAliases: false,
-  host: config.db.host,
-  port: config.db.port,
-  dialect: config.db.dialect,
-  logging: function(msg) {
+  operatorsAliases : false,
+  host : config.db.host,
+  port : config.db.port,
+  dialect : config.db.dialect,
+  logging : function(msg) {
     console.log(msg);
   },
-  pool: {
-    max: 3,
-    min: 0,
-    idle: 10000
+  pool : {
+    max : 3,
+    min : 0,
+    idle : 10000
   },
-  retry: {
-    match: [
+  retry : {
+    match : [
     /SequelizeConnectionError/,
     /SequelizeConnectionRefusedError/,
     /SequelizeHostNotFoundError/,
@@ -25,11 +25,11 @@ const sequelize = new Sequelize(config.db.database, config.db.username, config.d
     /SequelizeInvalidConnectionError/,
     /SequelizeConnectionTimedOutError/
     ],
-    name: 'query',
-    backoffBase: 100,
-    backoffExponent: 1.1,
-    timeout: 60000,
-    max: Infinity
+    name : 'query',
+    backoffBase : 100,
+    backoffExponent : 1.1,
+    timeout : 60000,
+    max : Infinity
   }
 });
 

@@ -2,11 +2,13 @@ import loginRoutes from './controllers/loginController.js';
 import authRoutes from './controllers/authController.js';
 import express from 'express';
 import session from 'express-session';
+import io from 'socket.io';
 
 const app = express();
 
 const handleRender = (req, res) => {
-  //XSS filter
+  // TODO
+  res.send('404');
 }
 
 app.use(session({
@@ -30,3 +32,9 @@ app.listen(80, (error) => {
     console.info('ctrl server started.');
   }
 });
+
+/*io(82).on('connection', function (socket) {
+    socket.on('test', function (data) {
+        console.log(data);
+    });
+});*/
