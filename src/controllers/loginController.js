@@ -18,6 +18,8 @@ loginRoutes.get('/login/:account', function(req, res) {
 			if(data.userLogin.hash_pw == digest){
 				req.session.regenerate(function(err) {
 					req.session.sid = data.uuid;
+					// TODO
+					req.session.role = data.role;
 					ajaxres.statusOK();
 					ajaxres.authOK();
 					res.json(ajaxres);
@@ -30,7 +32,7 @@ loginRoutes.get('/login/:account', function(req, res) {
 	}
 });
 
-loginRoutes.get('/logout', async function(req, res) {
+loginRoutes.get('/logout', function(req, res) {
 	req.session.destroy(function(err) {
 		let ajaxres = new ajaxRes();
 		ajaxres.authFail('登出成功。');
