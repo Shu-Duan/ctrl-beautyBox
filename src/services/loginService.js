@@ -15,7 +15,6 @@ loginService.queryUserById = function queryUserById(account) {
 			}
 		]
 	});
-	
 }
 
 export default loginService;
